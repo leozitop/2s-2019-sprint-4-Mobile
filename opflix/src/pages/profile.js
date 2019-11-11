@@ -3,6 +3,8 @@ import {
   Text, 
   View,
   AsyncStorage,
+  Image,
+  StyleSheet,
  } from 'react-native';
 
 class Profile extends Component {
@@ -12,6 +14,15 @@ class Profile extends Component {
     this.state = {
       token: null
     }
+  }
+
+  static navigationOptions = {
+    tabBarIcon: () => (
+      <Image
+        source={require('../assets/img/profile.png')}
+        style={styles.tabNavigatorIcon}
+      />
+    )
   }
 
   // quando eu abrir a tela de perfil, eu quero buscar os dados do asyncstorage
@@ -38,5 +49,9 @@ class Profile extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  tabNavigatorIcon: {width: 25, height: 25, tintColor: 'white'}
+})
 
 export default Profile;

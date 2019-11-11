@@ -13,8 +13,8 @@ export default class Login extends Component {
   constructor() {
     super();
     this.state = {
-      email: '',
-      senha: '',
+      email: 'helena@email.com',
+      senha: '123456',
     };
   }
 
@@ -32,9 +32,9 @@ export default class Login extends Component {
         senha: this.state.senha,
       }),
     })
-    .then(resposta => resposta.json())
-    .then(data => this._irParaNome(data.token))
-    .catch(erro => console.warn('vishhh' + erro));
+      .then(resposta => resposta.json())
+      .then(data => this._irParaNome(data.token))
+      .catch(erro => console.warn('vishhh' + erro));
   };
 
   _irParaNome = async tokenRecebido => {
@@ -44,7 +44,7 @@ export default class Login extends Component {
         await AsyncStorage.setItem('@opflix:token', tokenRecebido);
         // redirecionar
         this.props.navigation.navigate('MainNavigator');
-      }catch (error) {
+      } catch (error) {
 
       }
     }
@@ -54,16 +54,20 @@ export default class Login extends Component {
     return (
       <View>
         <TextInput placeholder='email'
-          onChangeText={email => this.setState({email})}
+          value={this.state.email}
+          onChangeText={email => this.setState({ email })}
         />
         <TextInput placeholder='senha'
+          value={this.state.senha}
           // secureTextEntry={true}
-          onChangeText={senha => this.setState({senha})}
+          onChangeText={senha => this.setState({ senha })}
         />
         <TouchableOpacity onPress={this._realizarLogin}>
           <Text>Entrar</Text>
         </TouchableOpacity>
       </View>
     );
+
+
   }
 }

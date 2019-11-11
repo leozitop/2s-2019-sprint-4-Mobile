@@ -5,6 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import MainScreen from './pages/main';
 import ProfileScreen from './pages/profile'
 import LoginScreen from './pages/login';
+import CategoriaScreen from './pages/categoria';
 
 // criar a navegaçao com o login = autenticaçao
 const AuthStack = createStackNavigator({
@@ -16,13 +17,16 @@ const MainNavigator = createBottomTabNavigator(
     Main: {
       screen: MainScreen,
     },
+    Categoria: {
+      screen: CategoriaScreen,
+    },
     Profile: {
       screen: ProfileScreen,
     }
   },
   {
     // define a rota inicial
-    initialRouteName: 'Profile',
+    initialRouteName: 'Main',
     tabBarOptions: {
       showIcon: true,
       showLabel: false,
@@ -42,5 +46,8 @@ export default createAppContainer(createSwitchNavigator(
     AuthStack,
     MainNavigator,
   },
+  {
+    initialRouteName: 'AuthStack',
+  }
 ),
 );

@@ -6,6 +6,7 @@ import MainScreen from './pages/main';
 import ProfileScreen from './pages/profile'
 import LoginScreen from './pages/login';
 import CategoriaScreen from './pages/categoria';
+import FiltroScreen from './pages/filtro';
 
 // criar a navegaçao com o login = autenticaçao
 const AuthStack = createStackNavigator({
@@ -22,6 +23,9 @@ const MainNavigator = createBottomTabNavigator(
     },
     Profile: {
       screen: ProfileScreen,
+    },
+    Filtro: {
+      screen: FiltroScreen,
     }
   },
   {
@@ -31,7 +35,7 @@ const MainNavigator = createBottomTabNavigator(
       showIcon: true,
       showLabel: false,
       inactiveBackgroundColor: '#b14040',
-      activeBackgroundColor: '#C60909',
+      activeBackgroundColor: '#ad1923',
       style: {
         width: '100%',
         height: 50,

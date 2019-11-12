@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import { Text, View, TextInput, TouchableOpacity, AsyncStorage } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, AsyncStorage, ImageBackground, StyleSheet } from 'react-native';
+import image from '../assets/img/background.png'
 
 export default class Login extends Component {
 
@@ -52,22 +53,35 @@ export default class Login extends Component {
 
   render() {
     return (
+
       <View>
-        <TextInput placeholder='email'
-          value={this.state.email}
-          onChangeText={email => this.setState({ email })}
-        />
-        <TextInput placeholder='senha'
-          value={this.state.senha}
-          // secureTextEntry={true}
-          onChangeText={senha => this.setState({ senha })}
-        />
-        <TouchableOpacity onPress={this._realizarLogin}>
-          <Text>Entrar</Text>
-        </TouchableOpacity>
+        <ImageBackground  source={image} style={{width: '100%', height: '100%', opacity: 0.9}}>
+
+          <Text style={styles.titulo}>Login</Text>
+          <Text style={styles.text}>-----------------</Text>
+          <TextInput style={styles.text} 
+            placeholder='email'
+            value={this.state.email}
+            onChangeText={email => this.setState({ email })}
+          />
+          <TextInput style={styles.text}
+            placeholder='senha'
+            value={this.state.senha}
+            // secureTextEntry={true}
+            onChangeText={senha => this.setState({ senha })}
+          />
+          <TouchableOpacity style={styles.botao}
+            onPress={this._realizarLogin}>
+            <Text style={styles.text}>Entrar</Text>
+          </TouchableOpacity>
+        </ImageBackground>
       </View>
     );
-
-
   }
 }
+
+const styles = StyleSheet.create({
+  text: { color: 'white', fontSize: 25 , textAlign: 'center', fontWeight: 'bold' },
+  botao: { backgroundColor: 'red',  borderRadius: 25, marginHorizontal: 100},
+  titulo: { color: '#ad1923', fontSize: 40, textAlign: 'center', fontWeight: 'bold', marginTop: 120  }
+})

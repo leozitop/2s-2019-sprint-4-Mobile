@@ -44,6 +44,8 @@ class Profile extends Component {
   render() {
     return (
       <View>
+        <Text>[---Código de Segurança---]</Text>
+        <Text>............................................................................................................</Text>
         <Text>{this.state.token}</Text>
       </View>
     );

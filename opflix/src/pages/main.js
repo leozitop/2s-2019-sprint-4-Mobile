@@ -57,6 +57,7 @@ export default class Main extends Component {
             <Text style={styles.text}>{item.dataLancamento}</Text>
             <Text style={styles.text}>{item.idPlataformaNavigation.nome}</Text>
             <Text>{item.imagem}</Text>
+            <Text>          </Text>
             {/* <Text>{this.state.token}</Text> */}
           </View>
         )}
@@ -67,6 +68,6 @@ export default class Main extends Component {
 
 const styles = StyleSheet.create({
   tabNavigatorIcon: { width: 25, height: 25, tintColor: 'white' },
-  body: {backgroundColor: '#000000'},
-  text: {color: 'white'},
+  body: { backgroundColor: '#d6d6d6' },
+  text: { color: 'black' },
 })

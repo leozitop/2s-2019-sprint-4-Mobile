@@ -43,17 +43,19 @@ class Profile extends Component {
 
   render() {
     return (
-      <View>
-        <Text>[---Código de Segurança---]</Text>
-        <Text>............................................................................................................</Text>
-        <Text>{this.state.token}</Text>
+      <View style={styles.backgroundProfile}> 
+        <Text style={styles.text}>[---Código de Segurança---]</Text>
+        <Text style={styles.text}>.................................................................................................</Text>
+        <Text style={styles.text}>{this.state.token}</Text>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  tabNavigatorIcon: {width: 25, height: 25, tintColor: 'white'}
+  tabNavigatorIcon: {width: 25, height: 25, tintColor: 'white'},
+  text: { fontSize: 15, color: 'white' },
+  backgroundProfile: { backgroundColor: 'black', paddingBottom: 450 },
 })
 
 export default Profile;

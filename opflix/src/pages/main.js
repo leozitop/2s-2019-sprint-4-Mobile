@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import { Text, View, Image, StyleSheet, FlatList, AsyncStorage } from 'react-native';
+
 export default class Main extends Component {
 
   static navigationOptions = {
@@ -44,24 +45,30 @@ export default class Main extends Component {
 
   render() {
     return (
-      <FlatList  style={styles.body}
-        data={this.state.lancamentos}
-        keyExtractor={item => item.idLancamento}
-        renderItem={({ item }) => (
-          <View >
-            <Text style={styles.text}>{item.nome}</Text>
-            <Text style={styles.text}>{item.sinopse}</Text>
-            <Text style={styles.text}>{item.idCategoriaNavigation.nome}</Text>
-            <Text style={styles.text}>{item.duracao}</Text>
-            <Text style={styles.text}>{item.idTipoNavigation.nome}</Text>
-            <Text style={styles.text}>{item.dataLancamento}</Text>
-            <Text style={styles.text}>{item.idPlataformaNavigation.nome}</Text>
-            <Text>{item.imagem}</Text>
-            <Text>          </Text>
-            {/* <Text>{this.state.token}</Text> */}
+      <View>
+        <View style={styles.backgroundImg}>
+            <Image source={require('../assets/img/logo.png')} style={styles.imagem}/>
+            <Image source={require('../assets/img/sair.png')} style={styles.sair}/>
           </View>
-        )}
+        <FlatList  style={styles.body}
+          data={this.state.lancamentos}
+          keyExtractor={item => item.idLancamento}
+          renderItem={({ item }) => (
+            <View >
+              <Text style={styles.text}>{item.nome}</Text>
+              <Text style={styles.text}>{item.sinopse}</Text>
+              <Text style={styles.text}>{item.idCategoriaNavigation.nome}</Text>
+              <Text style={styles.text}>{item.duracao}</Text>
+              <Text style={styles.text}>{item.idTipoNavigation.nome}</Text>
+              <Text style={styles.text}>{item.dataLancamento}</Text>
+              <Text style={styles.text}>{item.idPlataformaNavigation.nome}</Text>
+              <Text>{item.imagem}</Text>
+              <Text>          </Text>
+              {/* <Text>{this.state.token}</Text> */}
+            </View>
+          )}
         />
+      </View>
     );
   }
 }
@@ -70,4 +77,7 @@ const styles = StyleSheet.create({
   tabNavigatorIcon: { width: 25, height: 25, tintColor: 'white' },
   body: { backgroundColor: '#d6d6d6' },
   text: { color: 'black' },
+  logo: { backgroundColor: 'black' },
+  sair: { width: 30, height: 40, tintColor: 'white' },
+  backgroundImg: { backgroundColor: 'black', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' },
 })

@@ -59,7 +59,7 @@ export default class Login extends Component {
 
           <View style={styles.backgroundLogin}>
             <Text style={styles.titulo}>Login</Text>
-            {/* <Text style={styles.text}>-----------------</Text> */}
+            <View style={styles.mainHeaderLine}></View>
             <Text>  </Text>
             <TextInput style={styles.text} 
               placeholder='email'
@@ -75,7 +75,7 @@ export default class Login extends Component {
             <Text> </Text>
             <TouchableOpacity style={styles.botao}
               onPress={this._realizarLogin}>
-              <Text style={styles.text}>Entrar</Text>
+              <Text style={styles.botaoText}>Entrar</Text>
             </TouchableOpacity>
           </View>
         </ImageBackground>
@@ -85,8 +85,10 @@ export default class Login extends Component {
 }
 
 const styles = StyleSheet.create({
-  text: { color: 'white', fontSize: 25 , textAlign: 'center', fontWeight: 'bold' },
+  text: { color: '#d6d6d6', fontSize: 25 , textAlign: 'center', fontWeight: 'bold' },
   botao: { backgroundColor: 'red', borderRadius: 25, marginHorizontal: 100 },
-  titulo: { color: '#ad1923', fontSize: 60, textAlign: 'center', fontWeight: 'bold', marginTop: 120  },
-  backgroundLogin: { backgroundColor: 'black', paddingBottom: 300, paddingTop: 25, opacity: 0.9}
+  titulo: { color: '#fff', fontSize: 60, textAlign: 'center', fontWeight: 'bold', marginTop: 120  },
+  backgroundLogin: { backgroundColor: 'black', paddingBottom: 300, paddingTop: 25, opacity: 0.9},
+  mainHeaderLine: { width: 170, marginLeft: 122, paddingTop: 2, textAlign: 'center', borderBottomColor: '#ad1923', borderBottomWidth: 2.0 },
+  botaoText: { color: '#fff', fontSize: 25 , textAlign: 'center', fontWeight: 'bold' },
 })

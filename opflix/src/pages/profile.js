@@ -50,9 +50,10 @@ class Profile extends Component {
         </View>
         <View style={styles.backgroundProfile}> 
           <Text>  </Text>
+          <Text style={styles.titulo}>Perfil</Text>
+          <View style={styles.mainHeaderLine}></View>
           <Text>  </Text>
-          <Text style={styles.text}>[---Código de Segurança---]</Text>
-          <Text style={styles.text}>.................................................................................................</Text>
+          <Text>  </Text>
           <Text style={styles.text}>{this.state.token}</Text>
         </View>
       </View>
@@ -67,6 +68,8 @@ const styles = StyleSheet.create({
   logo: { backgroundColor: 'black' },
   sair: { width: 30, height: 40, tintColor: 'white' },
   backgroundImg: { backgroundColor: 'black', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' },
+  mainHeaderLine: { width: 170, marginLeft: 122, paddingTop: 2, textAlign: 'center', borderBottomColor: '#ad1923', borderBottomWidth: 2.0 },
+  titulo: { fontSize: 40, color: '#fff', textAlign: 'center' },
 })
 
 export default Profile;

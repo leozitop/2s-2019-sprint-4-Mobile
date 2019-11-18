@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { StyleSheet, Image, View, FlatList, Fragment, Text, TouchableOpacity, Picker, AsyncStorage } from 'react-native';
+import { StyleSheet, Image, View, FlatList, Text, TouchableOpacity, Picker, AsyncStorage } from 'react-native';
 
 export default class Filtro extends Component {
 
@@ -18,7 +18,7 @@ export default class Filtro extends Component {
     this.state = {
       lancamentos: [],
       categoriaEscolhida: null,
-      categorias: []
+      categorias: [],
     }
   }
 
@@ -27,8 +27,8 @@ export default class Filtro extends Component {
     this._carregarCategorias();
   }
 
-  _carregarLancamentos = async () => {
-    await fetch('http://192.168.4.199:5000/api/lancamentos/listar/categorias/' + this.state.categoriaEscolhida, {
+  _filtroCategoria = async () => {
+    await fetch('http://192.168.4.199:5000/api/lancamentos/filtroCategoria/' + this.state.categoriaEscolhida, {
       headers: {
         "Accept": "application/json",
         'Content-Type': 'application/json',
@@ -55,7 +55,6 @@ export default class Filtro extends Component {
 
   render() {
     return (
-      // <Fragment>
       <View  style={styles.backgroundFiltro}>
         <View style={styles.backgroundImg}>
             <Image source={require('../assets/img/logo.png')} style={styles.imagem}/>
@@ -63,16 +62,17 @@ export default class Filtro extends Component {
           </View>
         <View> 
           <Text>  </Text>
-          <Text>Filtrar lançamentos por categoria</Text>
-          <Picker selectedValue={this.state.categoriaEscolhida} onValueChange={(itemValue) => this.setState({ categoriaEscolhida: itemValue })}>
-            <Picker.Item label="Escolha a plataforma:" value="0" selectedValue />
+          <Text style={styles.titulo}>Filtro por categoria</Text>
+          <View style={styles.mainHeaderLine}></View>
+          <Picker style={styles.text} selectedValue={this.state.categoriaEscolhida} onValueChange={(itemValue) => this.setState({ categoriaEscolhida: itemValue })}>
+            <Picker.Item label="Escolha a categoria:" value="0" selectedValue />
             {this.state.categorias.map(e => {
               return (<Picker.Item label={e.nome} value={e.idCategoria} />
               )
             })}
           </Picker>
-          <TouchableOpacity onPress={this._carregarLancamentos}>
-            <Text>Buscar</Text>
+          <TouchableOpacity onPress={this._filtroCategoria}>
+            <Text style={styles.text}>Buscar</Text>
           </TouchableOpacity>
           <FlatList
             data={this.state.lancamentos}
@@ -85,7 +85,6 @@ export default class Filtro extends Component {
             )}
           />
         </View>
-        {/* // </Fragment> */}
       </View>
     );
   }
@@ -111,9 +110,11 @@ const styles = StyleSheet.create({
   //   borderWidth: 1
   // },
   tabNavigatorIcon: { width: 25, height: 25, tintColor: 'white' },
-  backgroundFiltro: { backgroundColor: '#d6d6d6', paddingBottom: 405 },
-  text: { fontSize: 20 },
+  backgroundFiltro: { backgroundColor: '#000', paddingBottom: 405 },
+  text: { fontSize: 20, color: 'white', textAlign: 'center' },
   logo: { backgroundColor: 'black' },
   sair: { width: 30, height: 40, tintColor: 'white' },
   backgroundImg: { backgroundColor: 'black', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' },
+  mainHeaderLine: { width: 170, marginLeft: 122, paddingTop: 2, textAlign: 'center', borderBottomColor: '#ad1923', borderBottomWidth: 2.0 },
+  titulo: { fontSize: 40, color: '#fff', textAlign: 'center' },
 });

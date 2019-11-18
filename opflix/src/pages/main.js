@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Text, View, Image, StyleSheet, FlatList, AsyncStorage } from 'react-native';
+import { Text, View, Image, StyleSheet, FlatList } from 'react-native';
 
 export default class Main extends Component {
 
@@ -49,25 +49,32 @@ export default class Main extends Component {
         <View style={styles.backgroundImg}>
             <Image source={require('../assets/img/logo.png')} style={styles.imagem}/>
             <Image source={require('../assets/img/sair.png')} style={styles.sair}/>
-          </View>
-        <FlatList  style={styles.body}
-          data={this.state.lancamentos}
-          keyExtractor={item => item.idLancamento}
-          renderItem={({ item }) => (
-            <View >
-              <Text style={styles.text}>{item.nome}</Text>
-              <Text style={styles.text}>{item.sinopse}</Text>
-              <Text style={styles.text}>{item.idCategoriaNavigation.nome}</Text>
-              <Text style={styles.text}>{item.duracao}</Text>
-              <Text style={styles.text}>{item.idTipoNavigation.nome}</Text>
-              <Text style={styles.text}>{item.dataLancamento}</Text>
-              <Text style={styles.text}>{item.idPlataformaNavigation.nome}</Text>
-              <Text>{item.imagem}</Text>
-              <Text>          </Text>
-              {/* <Text>{this.state.token}</Text> */}
-            </View>
-          )}
-        />
+        </View>
+        <View  style={styles.body}>
+          <Text>  </Text>
+          <Text style={styles.titulo}>Lançamentos</Text>
+          <View style={styles.mainHeaderLine}></View>
+          <Text>  </Text>
+          <Text>  </Text>
+          <FlatList 
+            data={this.state.lancamentos}
+            keyExtractor={item => item.idLancamento}
+            renderItem={({ item }) => (
+              <View >
+                <Text style={styles.text}>{item.nome}</Text>
+                <Text style={styles.text}>{item.sinopse}</Text>
+                <Text style={styles.text}>{item.idCategoriaNavigation.nome}</Text>
+                <Text style={styles.text}>{item.duracao}</Text>
+                <Text style={styles.text}>{item.idTipoNavigation.nome}</Text>
+                <Text style={styles.text}>{item.dataLancamento}</Text>
+                <Text style={styles.text}>{item.idPlataformaNavigation.nome}</Text>
+                <Text style={styles.text}>{item.imagem}</Text>
+                <Text>          </Text>
+                {/* <Text>{this.state.token}</Text> */}
+              </View>
+            )}
+          />
+        </View>
       </View>
     );
   }
@@ -75,9 +82,11 @@ export default class Main extends Component {
 
 const styles = StyleSheet.create({
   tabNavigatorIcon: { width: 25, height: 25, tintColor: 'white' },
-  body: { backgroundColor: '#d6d6d6' },
-  text: { color: 'black' },
+  body: { backgroundColor: '#000' },
+  text: { color: 'white' },
   logo: { backgroundColor: 'black' },
   sair: { width: 30, height: 40, tintColor: 'white' },
   backgroundImg: { backgroundColor: 'black', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' },
+  mainHeaderLine: { width: 170, marginLeft: 122, paddingTop: 2, textAlign: 'center', borderBottomColor: '#ad1923', borderBottomWidth: 2.0 },
+  titulo: { fontSize: 40, color: '#fff', textAlign: 'center' },
 })

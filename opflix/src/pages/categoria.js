@@ -39,8 +39,9 @@ export default class Categoria extends Component {
         </View>
         <View style={styles.backgroundCategoria}>
           <Text>  </Text>
-          <Text style={styles.titulo}>Categorias:</Text>
-          <Text>   </Text>
+          <Text style={styles.titulo}>Categorias</Text>
+          <View style={styles.mainHeaderLine}></View>
+          <Text>  </Text>
           <FlatList
             data={this.state.categorias}
             keyExtractor={item => item.idCategoria}
@@ -59,10 +60,11 @@ export default class Categoria extends Component {
 
 const styles = StyleSheet.create({
   tabNavigatorIcon: { width: 25, height: 25, tintColor: 'white' },
-  text: { fontSize: 30, color: 'black', textAlign: 'center', fontWeight: 'bold' },
-  titulo: { fontSize: 40, color: '#ad1923', fontWeight: 'bold', textAlign: 'center' },
-  backgroundCategoria: { backgroundColor: '#d6d6d6', paddingBottom: 200 },
+  text: { fontSize: 20, color: 'white', textAlign: 'center' },
+  titulo: { fontSize: 40, color: '#fff', textAlign: 'center' },
+  backgroundCategoria: { backgroundColor: '#000', paddingBottom: 200 },
   logo: { backgroundColor: 'black' },
   sair: { width: 30, height: 40, tintColor: 'white' },
   backgroundImg: { backgroundColor: 'black', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' },
+  mainHeaderLine: { width: 170, paddingTop: 2, marginLeft: 122, textAlign: 'center', borderBottomColor: '#ad1923', borderBottomWidth: 2.0 }
 })

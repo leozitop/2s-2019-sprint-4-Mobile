@@ -34,8 +34,9 @@ const MainNavigator = createBottomTabNavigator(
     tabBarOptions: {
       showIcon: true,
       showLabel: false,
-      inactiveBackgroundColor: '#ad1923',
-      activeBackgroundColor: '#b14040',
+      inactiveBackgroundColor: 'red',
+      activeBackgroundColor: '#ad1923',
+      //b14040
       style: {
         width: '100%',
         height: 50,

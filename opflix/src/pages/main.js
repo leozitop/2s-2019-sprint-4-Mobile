@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
-import { Text, View, Image, StyleSheet, FlatList } from 'react-native';
+import { Text, View, Image, StyleSheet, FlatList, TouchableHighlight } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import logout from '../assets/img/sair.png';
+import logo from '../assets/img/logo.png';
 
 export default class Main extends Component {
 
@@ -28,12 +31,16 @@ export default class Main extends Component {
   //       this.setState({ token: tokenDoStorage })
   //     }
   //   } catch (error) {
-      
+
   //   }
   // }
 
   componentDidMount() {
     this._listarLancamentos();
+  }
+
+  _logout = async () => {
+    this.props.navigation.navigate('AuthStack');
   }
 
   _listarLancamentos = async () => {
@@ -43,38 +50,50 @@ export default class Main extends Component {
       .catch(erro => console.warn(erro));
   };
 
+
+
   render() {
     return (
       <View>
         <View style={styles.backgroundImg}>
-            <Image source={require('../assets/img/logo.png')} style={styles.imagem}/>
-            <Image source={require('../assets/img/sair.png')} style={styles.sair}/>
+          <Image source={logo} style={styles.imagem} />
+          <TouchableHighlight onPress={() => this._logout()}>
+            <Image source={logout} style={styles.sair} />
+          </TouchableHighlight>
         </View>
-        <View  style={styles.body}>
+        <ScrollView className='container' style={styles.body}>
           <Text>  </Text>
           <Text style={styles.titulo}>Lançamentos</Text>
           <View style={styles.mainHeaderLine}></View>
           <Text>  </Text>
           <Text>  </Text>
-          <FlatList 
+          <FlatList
             data={this.state.lancamentos}
             keyExtractor={item => item.idLancamento}
             renderItem={({ item }) => (
               <View >
-                <Text style={styles.text}>{item.nome}</Text>
-                <Text style={styles.text}>{item.sinopse}</Text>
-                <Text style={styles.text}>{item.idCategoriaNavigation.nome}</Text>
-                <Text style={styles.text}>{item.duracao}</Text>
-                <Text style={styles.text}>{item.idTipoNavigation.nome}</Text>
-                <Text style={styles.text}>{item.dataLancamento}</Text>
-                <Text style={styles.text}>{item.idPlataformaNavigation.nome}</Text>
-                <Text style={styles.text}>{item.imagem}</Text>
-                <Text>          </Text>
+                <Image style={styles.img}
+                  source={{ uri: item.imagem }}
+                />
+                <Text> </Text>
+                <Text style={styles.text}>Titulo: {item.nome}</Text>
+                <Text style={styles.text}>Sinopse: {item.sinopse}</Text>
+                <Text style={styles.text}>Categoria: {item.idCategoriaNavigation.nome}</Text>
+                <Text style={styles.text}>Duração: {item.duracao}</Text>
+                <Text style={styles.text}>Tipo: {item.idTipoNavigation.nome}</Text>
+                <Text style={styles.text}>Data de Lançamento: {item.dataLancamento}</Text>
+                <Text style={styles.text}>Plataforma: {item.idPlataformaNavigation.nome}</Text>
+                <Text> </Text>
                 {/* <Text>{this.state.token}</Text> */}
+                <Text> </Text>
+                <Text> </Text>
+                <Text> </Text>
+                <Text> </Text>
+                <Text> </Text>
               </View>
             )}
           />
-        </View>
+        </ScrollView>
       </View>
     );
   }
@@ -82,11 +101,12 @@ export default class Main extends Component {
 
 const styles = StyleSheet.create({
   tabNavigatorIcon: { width: 25, height: 25, tintColor: 'white' },
-  body: { backgroundColor: '#000' },
-  text: { color: 'white' },
+  body: { backgroundColor: '#000', paddingBottom: 100 },
+  text: { color: 'white', fontSize: 15, marginHorizontal: 20, paddingBottom: 2 },
   logo: { backgroundColor: 'black' },
   sair: { width: 30, height: 40, tintColor: 'white' },
   backgroundImg: { backgroundColor: 'black', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' },
   mainHeaderLine: { width: 170, marginLeft: 122, paddingTop: 2, textAlign: 'center', borderBottomColor: '#ad1923', borderBottomWidth: 2.0 },
   titulo: { fontSize: 40, color: '#fff', textAlign: 'center' },
+  img: { height: 150, width: 110, marginHorizontal: 20 },
 })

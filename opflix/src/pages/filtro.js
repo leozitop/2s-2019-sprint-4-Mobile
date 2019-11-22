@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
-import { StyleSheet, Image, View, FlatList, Text, TouchableOpacity, Picker, AsyncStorage } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { StyleSheet, Image, View, FlatList, Text, TouchableOpacity, Picker, AsyncStorage, ScrollView, TouchableHighlight } from 'react-native';
+import logout from '../assets/img/sair.png';
+import logo from '../assets/img/logo.png';
 
 export default class Filtro extends Component {
 
@@ -26,6 +27,10 @@ export default class Filtro extends Component {
   componentDidMount() {
     //this._carregarLancamentos();
     this._carregarCategorias();
+  }
+
+  _logout = async () => {
+    this.props.navigation.navigate('AuthStack');
   }
 
   _filtroCategoria = async () => {
@@ -58,15 +63,17 @@ export default class Filtro extends Component {
     return (
       <View  style={styles.backgroundFiltro}>
           <View style={styles.backgroundImg}>
-            <Image source={require('../assets/img/logo.png')} style={styles.imagem}/>
-            <Image source={require('../assets/img/sair.png')} style={styles.sair}/>
+          <Image source={logo} style={styles.imagem} />
+          <TouchableHighlight onPress={() => this._logout()}>
+            <Image source={logout} style={styles.sair} />
+          </TouchableHighlight>
           </View>
         <View> 
           <Text>  </Text>
           <Text style={styles.titulo}>Filtro por categoria</Text>
           <View style={styles.mainHeaderLine}></View>
           <Text>  </Text>
-          <Picker style={styles.text} selectedValue={this.state.categoriaEscolhida} onValueChange={(itemValue) => this.setState({ categoriaEscolhida: itemValue })}>
+          <Picker style={styles.picker} selectedValue={this.state.categoriaEscolhida} onValueChange={(itemValue) => this.setState({ categoriaEscolhida: itemValue })}>
             <Picker.Item label="Escolha a categoria:" value="0" selectedValue />
             {this.state.categorias.map(e => {
               return (<Picker.Item label={e.nome} value={e.idCategoria} />
@@ -80,8 +87,11 @@ export default class Filtro extends Component {
               keyExtractor={item => item.idLancamento}
               renderItem={({ item }) => (
                 <View>
-                  <Text style={styles.text}>{item.nome}</Text>
-                  <Text style={styles.text}>{item.sinopse}</Text>
+                  <Image style={styles.img} source={{uri:item.imagem}}/>
+                  <Text style={styles.text}>Titulo: {item.nome}</Text>
+                  <Text style={styles.text}>Sinopse: {item.sinopse}</Text>
+                  <Text> </Text>
+                  <Text> </Text>
                   <Text> </Text>
                 </View>
               )}
@@ -119,7 +129,7 @@ const styles = StyleSheet.create({
   // },
   tabNavigatorIcon: { width: 25, height: 25, tintColor: 'white' },
   backgroundFiltro: { backgroundColor: '#000', paddingBottom: 550},
-  text: { fontSize: 20, color: 'white', textAlign: 'center' },
+  text: { fontSize: 20, color: 'white', marginHorizontal: 20 },
   logo: { backgroundColor: 'black' },
   sair: { width: 30, height: 40, tintColor: 'white' },
   backgroundImg: { backgroundColor: 'black', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' },
@@ -127,5 +137,7 @@ const styles = StyleSheet.create({
   titulo: { fontSize: 40, color: '#fff', textAlign: 'center' },
   botao: { backgroundColor: 'red', borderRadius: 25, marginHorizontal: 150 },
   botaoText: { color: '#fff', fontSize: 20 , textAlign: 'center', fontWeight: 'bold' },
-  lancamento: { backgroundColor: '#000000', marginHorizontal: 20, padding: 10, opacity: 0.5 },
+  lancamento: { backgroundColor: '#000', marginHorizontal: 20, padding: 10, opacity: 0.7 },
+  picker: { color: 'black', fontWeight: 'bold', backgroundColor: 'white', borderRadius: 20,  textAlign: 'center', fontSize: 20, marginHorizontal: 20 },
+  img: { height: 150, width: 110, opacity: 0.7, marginHorizontal: 20 },
 });

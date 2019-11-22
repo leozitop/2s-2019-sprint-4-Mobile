@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import { 
-  Text, 
-  View,
-  AsyncStorage,
-  Image,
-  StyleSheet,
- } from 'react-native';
+import { Text, View, AsyncStorage, Image, StyleSheet, TouchableHighlight } from 'react-native';
+import logout from '../assets/img/sair.png';
+import logo from '../assets/img/logo.png';
 
 class Profile extends Component {
 
@@ -30,6 +26,10 @@ class Profile extends Component {
     this._buscarDadosDoStorage();
   }
 
+  _logout = async () => {
+    this.props.navigation.navigate('AuthStack');
+  }
+
   _buscarDadosDoStorage = async() => {
     try {
       const tokenDoStorage = await AsyncStorage.getItem('@opflix:token');
@@ -45,8 +45,10 @@ class Profile extends Component {
     return (
       <View>
         <View style={styles.backgroundImg}>
-            <Image source={require('../assets/img/logo.png')} style={styles.imagem}/>
-            <Image source={require('../assets/img/sair.png')} style={styles.sair}/>
+          <Image source={logo} style={styles.imagem} />
+          <TouchableHighlight onPress={() => this._logout()}>
+            <Image source={logout} style={styles.sair} />
+          </TouchableHighlight>
         </View>
         <View style={styles.backgroundProfile}> 
           <Text>  </Text>
@@ -63,7 +65,7 @@ class Profile extends Component {
 
 const styles = StyleSheet.create({
   tabNavigatorIcon: {width: 25, height: 25, tintColor: 'white'},
-  text: { fontSize: 15, color: 'white' },
+  text: { fontSize: 15, color: 'white', marginHorizontal: 20 },
   backgroundProfile: { backgroundColor: 'black', paddingBottom: 450 },
   logo: { backgroundColor: 'black' },
   sair: { width: 30, height: 40, tintColor: 'white' },

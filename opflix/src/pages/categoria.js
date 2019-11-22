@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
-import { Text, View, FlatList, StyleSheet, Image } from 'react-native';
+import { Text, View, FlatList, StyleSheet, Image, TouchableHighlight } from 'react-native';
+import logout from '../assets/img/sair.png';
+import logo from '../assets/img/logo.png';
+
 export default class Categoria extends Component {
 
   constructor(){
@@ -23,6 +26,10 @@ export default class Categoria extends Component {
     this._listarCategorias();
   }
 
+  _logout = async () => {
+    this.props.navigation.navigate('AuthStack');
+  }
+
   _listarCategorias = async () => {
     await fetch('http://192.168.4.199:5000/api/Categorias')
       .then(resposta => resposta.json())
@@ -34,8 +41,10 @@ export default class Categoria extends Component {
     return (
       <View>
         <View style={styles.backgroundImg}>
-          <Image source={require('../assets/img/logo.png')} style={styles.imagem}/>
-          <Image source={require('../assets/img/sair.png')} style={styles.sair}/>
+          <Image source={logo} style={styles.imagem} />
+          <TouchableHighlight onPress={() => this._logout()}>
+            <Image source={logout} style={styles.sair} />
+          </TouchableHighlight>
         </View>
         <View style={styles.backgroundCategoria}>
           <Text>  </Text>

@@ -4,37 +4,33 @@ import { StyleSheet, Image, View, FlatList, Text, TouchableOpacity, Picker, Asyn
 import logout from '../assets/img/sair.png';
 import logo from '../assets/img/logo.png';
 
-export default class Filtro extends Component {
 
-  static navigationOptions = {
-    tabBarIcon: () => (
-      <Image
-        source={require('../assets/img/filtro.png')}
-        style={styles.tabNavigatorIcon}
-      />
-    )
-  }
+export default class FiltroData extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       lancamentos: [],
-      categoriaEscolhida: null,
-      categorias: [],
+      DataEscolhida: null,
+      // datas: [
+      //   { idData: 1, data: '03-10-19' },
+      //   { idData: 2, data: '25-04-19' },
+      // ],
+      // listaDeDatas = lancamentos.dataLancamento,
     }
   }
 
   componentDidMount() {
-    //this._carregarLancamentos();
-    this._carregarCategorias();
+    this._carregarDataLancamento();
+
   }
 
   _logout = async () => {
     this.props.navigation.navigate('AuthStack');
   }
 
-  _filtroCategoria = async () => {
-    await fetch('http://192.168.4.199:5000/api/lancamentos/filtroCategoria/' + this.state.categoriaEscolhida, {
+  _filtroData = async () => {
+    await fetch('http://192.168.4.199:5000/api/lancamentos/filtroData/' + this.state.DataEscolhida, {
       headers: {
         "Accept": "application/json",
         'Content-Type': 'application/json',
@@ -46,18 +42,18 @@ export default class Filtro extends Component {
       .catch(erro => console.warn(erro))
   }
 
-  _carregarCategorias = async () => {
-    await fetch('http://192.168.4.199:5000/api/categorias', {
+  _carregarDataLancamento = async () => {
+    await fetch('http://192.168.4.199:5000/api/lancamentos', {
       headers: {
         "Accept": "application/json",
         'Content-Type': 'application/json',
         "Authorization": "Bearer " + await AsyncStorage.getItem("@opflix:token")
-      }
+      },
     })
       .then(resposta => resposta.json())
-      .then(data => this.setState({ categorias: data }))
-      .catch(erro => console.warn(erro));
-  };
+      .then(data => this.setState({ lancamentos: data }))
+      .catch(erro => console.warn(erro))
+  }
 
   render() {
     return (
@@ -70,13 +66,13 @@ export default class Filtro extends Component {
           </View>
         <View> 
           <Text>  </Text>
-          <Text style={styles.titulo}>Filtro por categoria</Text>
+          <Text style={styles.titulo}>Busca por Data</Text>
           <View style={styles.mainHeaderLine}></View>
           <Text>  </Text>
-          <Picker style={styles.picker} selectedValue={this.state.categoriaEscolhida} onValueChange={(itemValue) => this.setState({ categoriaEscolhida: itemValue })}>
-            <Picker.Item label="Escolha a categoria:" value="0" selectedValue />
-            {this.state.categorias.map(e => {
-              return (<Picker.Item label={e.nome} value={e.idCategoria} />
+          <Picker style={styles.picker} selectedValue={this.state.DataEscolhida} onValueChange={(itemValue) => this.setState({ DataEscolhida: itemValue })}>
+            <Picker.Item label="Escolha a data:" value="0" selectedValue />
+            {this.state.lancamentos.map(e => {
+              return (<Picker.Item label={e.dataLancamento} value={e.dataLancamento} />
               )
             })}
           </Picker>
@@ -97,7 +93,7 @@ export default class Filtro extends Component {
               )}
             />
             <TouchableOpacity style={styles.botao}
-              onPress={this._filtroCategoria}>
+              onPress={this._filtroData}>
               <Text style={styles.botaoText}>Buscar</Text>
             </TouchableOpacity>
             <Text> </Text>

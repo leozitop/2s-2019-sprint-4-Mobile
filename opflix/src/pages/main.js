@@ -72,11 +72,12 @@ export default class Main extends Component {
             keyExtractor={item => item.idLancamento}
             renderItem={({ item }) => (
               <View >
+                <Text style={styles.tituloLancamento}>{item.nome}</Text>
+                {/* <Text> </Text> */}
                 <Image style={styles.img}
                   source={{ uri: item.imagem }}
                 />
-                <Text> </Text>
-                <Text style={styles.text}>Titulo: {item.nome}</Text>
+                <Text>  </Text>
                 <Text style={styles.text}>Sinopse: {item.sinopse}</Text>
                 <Text style={styles.text}>Categoria: {item.idCategoriaNavigation.nome}</Text>
                 <Text style={styles.text}>Duração: {item.duracao}</Text>
@@ -109,4 +110,5 @@ const styles = StyleSheet.create({
   mainHeaderLine: { width: 170, marginLeft: 122, paddingTop: 2, textAlign: 'center', borderBottomColor: '#ad1923', borderBottomWidth: 2.0 },
   titulo: { fontSize: 40, color: '#fff', textAlign: 'center' },
   img: { height: 150, width: 110, marginHorizontal: 20 },
+  tituloLancamento: { color: 'red', fontSize: 20, marginHorizontal: 20, paddingBottom: 6 }
 })

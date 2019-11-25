@@ -7,6 +7,7 @@ import ProfileScreen from './pages/profile'
 import LoginScreen from './pages/login';
 import CategoriaScreen from './pages/categoria';
 import FiltroScreen from './pages/filtro';
+import FiltroDataScreen from './pages/filtroData';
 
 // criar a navegaçao com o login = autenticaçao
 const AuthStack = createStackNavigator({
@@ -26,7 +27,10 @@ const MainNavigator = createBottomTabNavigator(
     },
     Filtro: {
       screen: FiltroScreen,
-    }
+    },
+    FiltroDataScreen: {
+      screen: FiltroDataScreen,
+    },
   },
   {
     // define a rota inicial

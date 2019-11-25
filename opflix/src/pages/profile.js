@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { Text, View, AsyncStorage, Image, StyleSheet, TouchableHighlight } from 'react-native';
 import logout from '../assets/img/sair.png';
 import logo from '../assets/img/logo.png';
+import jwt from 'jwt-decode';
 
 class Profile extends Component {
 
   constructor() {
     super();
     this.state = {
-      token: null
+      token: null,
+      email: null,
     }
   }
 
@@ -30,14 +32,17 @@ class Profile extends Component {
     this.props.navigation.navigate('AuthStack');
   }
 
-  _buscarDadosDoStorage = async() => {
+  _buscarDadosDoStorage = async () => {
     try {
+      // console.warn(jwt(await AsyncStorage.getItem('@opflix:token')).email)
+      const dadosDoStorage = jwt(await AsyncStorage.getItem('@opflix:token')).email;
       const tokenDoStorage = await AsyncStorage.getItem('@opflix:token');
       if (tokenDoStorage != null) {
-        this.setState({ token: tokenDoStorage })
+        this.setState({ token: tokenDoStorage });
+        this.setState({ email: dadosDoStorage });
       }
     } catch (error) {
-      
+
     }
   }
 
@@ -50,10 +55,13 @@ class Profile extends Component {
             <Image source={logout} style={styles.sair} />
           </TouchableHighlight>
         </View>
-        <View style={styles.backgroundProfile}> 
+        <View style={styles.backgroundProfile}>
           <Text>  </Text>
           <Text style={styles.titulo}>Perfil</Text>
           <View style={styles.mainHeaderLine}></View>
+          <Text>  </Text>
+          <Text>  </Text>
+          <Text style={styles.text}>Usuario: {this.state.email}</Text>
           <Text>  </Text>
           <Text>  </Text>
           <Text style={styles.text}>{this.state.token}</Text>
@@ -64,7 +72,7 @@ class Profile extends Component {
 }
 
 const styles = StyleSheet.create({
-  tabNavigatorIcon: {width: 25, height: 25, tintColor: 'white'},
+  tabNavigatorIcon: { width: 25, height: 25, tintColor: 'white' },
   text: { fontSize: 15, color: 'white', marginHorizontal: 20 },
   backgroundProfile: { backgroundColor: 'black', paddingBottom: 450 },
   logo: { backgroundColor: 'black' },

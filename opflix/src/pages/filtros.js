@@ -35,7 +35,7 @@ export default class Filtros extends Component {
   }
 
   componentDidMount() {
-    // this._carregarDataLancamento();
+    //this._carregarDataLancamento();
     this._carregarPlataformas();
     this._carregarTipos();
   }
@@ -57,18 +57,18 @@ export default class Filtros extends Component {
       .catch(erro => console.warn(erro))
   }
 
-  _carregarDataLancamento = async () => {
-    await fetch('http://192.168.4.199:5000/api/lancamentos', {
-      headers: {
-        "Accept": "application/json",
-        'Content-Type': 'application/json',
-        "Authorization": "Bearer " + await AsyncStorage.getItem("@opflix:token")
-      },
-    })
-      .then(resposta => resposta.json())
-      .then(data => this.setState({ lancamentos: data }))
-      .catch(erro => console.warn(erro))
-  }
+  // _carregarDataLancamento = async () => {
+  //   await fetch('http://192.168.4.199:5000/api/lancamentos', {
+  //     headers: {
+  //       "Accept": "application/json",
+  //       'Content-Type': 'application/json',
+  //       "Authorization": "Bearer " + await AsyncStorage.getItem("@opflix:token")
+  //     },
+  //   })
+  //     .then(resposta => resposta.json())
+  //     .then(data => this.setState({ lancamentos: data }))
+  //     .catch(erro => console.warn(erro))
+  // }
 
   _alterarData = async (item) => {
     // console.warn(item)
@@ -153,6 +153,43 @@ export default class Filtros extends Component {
             <Image source={logout} style={styles.sair} />
           </TouchableHighlight>
         </View>
+
+        <View style={styles.backgroundFiltro}> 
+          <Text>  </Text>
+          <Text style={styles.titulo}>Filtro por plataforma</Text>
+          <View style={styles.mainHeaderLine}></View>
+          <Text>  </Text>
+          <Picker style={styles.picker} selectedValue={this.state.plataformaEscolhida} onValueChange={(itemValue) => this.setState({ plataformaEscolhida: itemValue })}>
+            <Picker.Item label="Escolha a plataforma:" value="0" selectedValue />
+            {this.state.plataformas.map(e => {
+              return (<Picker.Item label={e.nome} value={e.idPlataforma} />
+                )
+              })}
+          </Picker>
+          <Text>  </Text>
+          <ScrollView>
+            <FlatList style={styles.lancamento}
+              data={this.state.lancamentos}
+              keyExtractor={item => item.idLancamento}
+              renderItem={({ item }) => (
+                <View>
+                  <Image style={styles.img} source={{uri:item.imagem}}/>
+                  <Text style={styles.text}>Titulo: {item.nome}</Text>
+                  <Text style={styles.text}>Sinopse: {item.sinopse}</Text>
+                  <Text> </Text>
+                  <Text> </Text>
+                  <Text> </Text>
+                </View>
+              )}
+              />
+            <TouchableOpacity style={styles.botao}
+              onPress={this._filtroPlataforma}>
+              <Text style={styles.botaoText}>Buscar</Text>
+            </TouchableOpacity>
+            <Text> </Text>
+          </ScrollView>
+        </View>
+
         <View>
           <Text>  </Text>
           <Text style={styles.titulo}>Busca por Data</Text>
@@ -188,43 +225,7 @@ export default class Filtros extends Component {
             <Text> </Text>
           </ScrollView>
         </View>
-
-        <View style={styles.backgroundFiltro}> 
-          <Text>  </Text>
-          <Text style={styles.titulo}>Filtro por plataforma</Text>
-          <View style={styles.mainHeaderLine}></View>
-          <Text>  </Text>
-          <Picker style={styles.picker} selectedValue={this.state.plataformaEscolhida} onValueChange={(itemValue) => this.setState({ plataformaEscolhida: itemValue })}>
-            <Picker.Item label="Escolha a plataforma:" value="0" selectedValue />
-            {this.state.plataformas.map(e => {
-              return (<Picker.Item label={e.nome} value={e.idPlataforma} />
-              )
-            })}
-          </Picker>
-          <Text>  </Text>
-          <ScrollView>
-            <FlatList style={styles.lancamento}
-              data={this.state.lancamentos}
-              keyExtractor={item => item.idLancamento}
-              renderItem={({ item }) => (
-                <View>
-                  <Image style={styles.img} source={{uri:item.imagem}}/>
-                  <Text style={styles.text}>Titulo: {item.nome}</Text>
-                  <Text style={styles.text}>Sinopse: {item.sinopse}</Text>
-                  <Text> </Text>
-                  <Text> </Text>
-                  <Text> </Text>
-                </View>
-              )}
-            />
-            <TouchableOpacity style={styles.botao}
-              onPress={this._filtroPlataforma}>
-              <Text style={styles.botaoText}>Buscar</Text>
-            </TouchableOpacity>
-            <Text> </Text>
-          </ScrollView>
-        </View>
-
+              
         <View style={styles.backgroundFiltro}> 
           <Text>  </Text>
           <Text style={styles.titulo}>Filtro por tipo</Text>
@@ -273,7 +274,7 @@ const styles = StyleSheet.create({
   logo: { backgroundColor: 'black' },
   sair: { width: 30, height: 40, tintColor: 'white' },
   backgroundImg: { backgroundColor: 'black', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' },
-  mainHeaderLine: { width: 170, marginLeft: 122, paddingTop: 2, textAlign: 'center', borderBottomColor: '#ad1923', borderBottomWidth: 2.0 },
+  mainHeaderLine: { width: 170, marginHorizontal: 120, paddingTop: 2, textAlign: 'center', borderBottomColor: '#ad1923', borderBottomWidth: 2.0 },
   titulo: { fontSize: 40, color: '#fff', textAlign: 'center' },
   botao: { backgroundColor: 'red', borderRadius: 25, marginHorizontal: 150 },
   botaoText: { color: '#fff', fontSize: 20, textAlign: 'center', fontWeight: 'bold' },

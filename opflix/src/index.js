@@ -8,10 +8,15 @@ import LoginScreen from './pages/login';
 import CategoriaScreen from './pages/categoria';
 //import FiltroScreen from './pages/filtro';
 import FiltrosScreen from './pages/filtros';
+import SplashScreen from './pages/splashScreen';
 
 // criar a navegaçao com o login = autenticaçao
 const AuthStack = createStackNavigator({
   Login: { screen: LoginScreen },
+})
+
+const SplashPage = createStackNavigator({
+  SplashPage: { screen: SplashScreen }
 })
 
 const MainNavigator = createBottomTabNavigator(
@@ -52,11 +57,12 @@ const MainNavigator = createBottomTabNavigator(
 export default createAppContainer(createSwitchNavigator(
   {
     // define as telas que vão aparecer
+    SplashPage,
     AuthStack,
     MainNavigator,
   },
   {
-    initialRouteName: 'AuthStack',
+    initialRouteName: 'SplashPage',
   }
 ),
 );

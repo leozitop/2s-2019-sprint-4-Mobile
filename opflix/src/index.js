@@ -27,16 +27,16 @@ const MainNavigator = createBottomTabNavigator(
     Categoria: {
       screen: CategoriaScreen,
     },
-    Profile: {
-      screen: ProfileScreen,
-    },
     // Filtro: {
-    //   screen: FiltroScreen,
-    // },
-    FiltrosScreen: {
-      screen: FiltrosScreen,
+      //   screen: FiltroScreen,
+      // },
+      FiltrosScreen: {
+        screen: FiltrosScreen,
+      },
+      Profile: {
+        screen: ProfileScreen,
+      },
     },
-  },
   {
     // define a rota inicial
     initialRouteName: 'Main',

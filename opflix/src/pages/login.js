@@ -35,7 +35,7 @@ export default class Login extends Component {
     })
       .then(resposta => resposta.json())
       .then(data => this._irParaNome(data.token))
-      .catch(erro => console.warn('vishhh' + erro));
+      .catch(erro => ('deu erro meu bom' + erro));
   };
 
   _irParaNome = async tokenRecebido => {
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   text: { color: '#d6d6d6', fontSize: 25 , textAlign: 'center', fontWeight: 'bold' },
   botao: { backgroundColor: 'red', borderRadius: 25, marginHorizontal: 100, marginTop: 15 },
   titulo: { color: '#fff', fontSize: 60, textAlign: 'center', fontWeight: 'bold', marginTop: 120  },
-  backgroundLogin: { backgroundColor: 'black', paddingBottom: 300, paddingTop: 25, opacity: 0.9},
+  backgroundLogin: { backgroundColor: 'black', paddingBottom: 300, paddingTop: 25, opacity: 1.0 },
   // mainHeaderLine: { width: 170, marginLeft: 122, paddingTop: 2, textAlign: 'center', borderBottomColor: '#ad1923', borderBottomWidth: 2.0 },
   botaoText: { color: '#fff', fontSize: 25 , textAlign: 'center', fontWeight: 'bold' },
   imagem: { marginHorizontal: 55, marginBottom: 100, height: 150, width: 300 },

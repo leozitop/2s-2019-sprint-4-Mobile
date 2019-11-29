@@ -57,7 +57,9 @@ export default class Main extends Component {
       <View>
         <View style={styles.backgroundImg}>
           <Image source={logo} style={styles.imagem} />
-          <TouchableHighlight onPress={() => this._logout()}>
+          <TouchableHighlight 
+          onPress={() => this._logout()}
+          >
             <Image source={logout} style={styles.sair} />
           </TouchableHighlight>
         </View>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-import { Text, View, Image, StyleSheet, FlatList, TouchableHighlight } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { Text, View, Image, StyleSheet, FlatList, TouchableHighlight, ScrollView  } from 'react-native';
 import logout from '../assets/img/sair.png';
 import logo from '../assets/img/logo.png';
 
@@ -81,11 +80,11 @@ export default class Main extends Component {
                 />
                 <Text>  </Text>
                 <Text style={styles.text}>Sinopse: {item.sinopse}</Text>
-                <Text style={styles.text}>Categoria: {item.idCategoriaNavigation.nome}</Text>
+                <Text style={styles.text}>Categoria: {item.idCategoriaNavigation != undefined ? item.idCategoriaNavigation.nome : 'Não tem categoria.'}</Text>
                 <Text style={styles.text}>Duração: {item.duracao}</Text>
-                <Text style={styles.text}>Tipo: {item.idTipoNavigation.nome}</Text>
+                <Text style={styles.text}>Tipo: {item.idTipoNavigation != undefined ? item.idTipoNavigation.nome : 'Não tem tipo.'}</Text>
                 <Text style={styles.text}>Data de Lançamento: {item.dataLancamento}</Text>
-                <Text style={styles.text}>Plataforma: {item.idPlataformaNavigation.nome}</Text>
+                <Text style={styles.text}>Plataforma: {item.idPlataformaNavigation != undefined ? item.idPlataformaNavigation.nome : 'Não tem plataforma.'}</Text>
                 <Text> </Text>
                 {/* <Text>{this.state.token}</Text> */}
                 <Text> </Text>

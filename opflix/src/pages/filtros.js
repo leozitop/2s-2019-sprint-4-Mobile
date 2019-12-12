@@ -45,7 +45,7 @@ export default class Filtros extends Component {
   }
 
   _filtroData = async () => {
-    await fetch('http://192.168.4.199:5000/api/lancamentos/filtroData/' + this.state.DataEscolhida, {
+    await fetch('http://192.168.3.160:5000/api/lancamentos/filtroData/' + this.state.DataEscolhida, {
       headers: {
         "Accept": "application/json",
         'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ export default class Filtros extends Component {
 
 
   _filtroPlataforma = async () => {
-    await fetch('http://192.168.4.199:5000/api/lancamentos/filtroPlataforma/' + this.state.plataformaEscolhida, {
+    await fetch('http://192.168.3.160:5000/api/lancamentos/filtroPlataforma/' + this.state.plataformaEscolhida, {
       headers: {
         "Accept": "application/json",
         'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ export default class Filtros extends Component {
   }
 
   _carregarPlataformas = async () => {
-    await fetch('http://192.168.4.199:5000/api/plataformas', {
+    await fetch('http://192.168.3.160:5000/api/plataformas', {
       headers: {
         "Accept": "application/json",
         'Content-Type': 'application/json',
@@ -118,7 +118,7 @@ export default class Filtros extends Component {
 
   
   _filtroTipo = async () => {
-    await fetch('http://192.168.4.199:5000/api/lancamentos/filtroTipo/' + this.state.tipoEscolhido, {
+    await fetch('http://192.168.3.160:5000/api/lancamentos/filtroTipo/' + this.state.tipoEscolhido, {
       headers: {
         "Accept": "application/json",
         'Content-Type': 'application/json',
@@ -131,7 +131,7 @@ export default class Filtros extends Component {
   }
 
   _carregarTipos = async () => {
-    await fetch('http://192.168.4.199:5000/api/tipos', {
+    await fetch('http://192.168.3.160:5000/api/tipos', {
       headers: {
         "Accept": "application/json",
         'Content-Type': 'application/json',

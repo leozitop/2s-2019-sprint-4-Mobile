@@ -22,7 +22,7 @@ export default class Login extends Component {
   // pegar informaçao e enviar para a api
   _realizarLogin = async () => {
     // console.warn(this.state.email + ' - ' + this.state.senha);
-    fetch('http://192.168.4.199:5000/api/login', {
+    fetch('http://192.168.3.160:5000/api/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

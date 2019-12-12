@@ -37,7 +37,7 @@ export default class Categoria extends Component {
   }
 
   _listarCategorias = async () => {
-    await fetch('http://192.168.4.199:5000/api/Categorias')
+    await fetch('http://192.168.3.160:5000/api/Categorias')
       .then(resposta => resposta.json())
       .then(data => this.setState({categorias: data}))
       .catch(erro => console.warn(erro));
@@ -46,7 +46,7 @@ export default class Categoria extends Component {
   // filtro por categoria
 
   _filtroCategoria = async () => {
-    await fetch('http://192.168.4.199:5000/api/lancamentos/filtroCategoria/' + this.state.categoriaEscolhida, {
+    await fetch('http://192.168.3.160:5000/api/lancamentos/filtroCategoria/' + this.state.categoriaEscolhida, {
       headers: {
         "Accept": "application/json",
         'Content-Type': 'application/json',

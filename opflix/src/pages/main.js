@@ -43,7 +43,7 @@ export default class Main extends Component {
   }
 
   _listarLancamentos = async () => {
-    await fetch('http://192.168.4.199:5000/api/lancamentos')
+    await fetch('http://192.168.3.160:5000/api/lancamentos')
       .then(resposta => resposta.json())
       .then(data => this.setState({ lancamentos: data }))
       .catch(erro => console.warn(erro));
